@@ -30,6 +30,10 @@ public class ChatumLatinumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatum_latinum);
 
+        //Optimization: Removes the material Theme background enhancing overdraw performance
+        //The activity already has an opaque background defined in the layout xml
+        getWindow().setBackgroundDrawable(null);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.activity_chatum_latinum_container, new ChatsFragment())

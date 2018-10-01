@@ -76,8 +76,15 @@ public class ChatAdapter extends ArrayAdapter<Chat> {
         if (chat.getAuthor().getAvatarId() != 0) {
             Picasso.get().load(chat.getAuthor().getAvatarId()).into(
                     chat_author_avatar);
+            // Optimization: set the background transparent  if an avatar exists
+            chat_author_avatar.setBackgroundColor(Color.TRANSPARENT);
+        }else{
+            //Optimization: set background to author color
+            Picasso.get().load(android.R.color.transparent).into(
+                    chat_author_avatar);
+            chat_author_avatar.setBackgroundColor(chat.getAuthor().getColor());
         }
-        chat_author_avatar.setBackgroundColor(chat.getAuthor().getColor());
+
 
         return view;
     }
